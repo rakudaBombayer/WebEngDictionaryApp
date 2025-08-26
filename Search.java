@@ -24,6 +24,7 @@ public class Search extends HttpServlet {
             throws ServletException, IOException {
     	
     	String input = request.getParameter("text");
+    	
 //    	String inputNum = request.getParameter("number");
     	
     	String quantityStr = request.getParameter("quantity");
@@ -33,7 +34,7 @@ public class Search extends HttpServlet {
         String password = "sql";
 
         Scanner scanner = new Scanner(System.in);
-        System.out.print("検索したい英単語（前方一致）を入力してください: ");
+//        System.out.print("検索したい英単語（前方一致）を入力してください: ");
 
 
         String sql = "SELECT word, description  FROM en_jp WHERE word ILIKE ? LIMIT ?";
@@ -60,12 +61,14 @@ public class Search extends HttpServlet {
                 String word = rs.getString("word");
                 String description = rs.getString("description");
                 results.add(new String[] { word, description });
-                System.out.println(" - " + word + " : " + description);
+//                System.out.println(" - " + word + " : " + description);
             }
+            int hitCount = results.size();
             
          // JSPに渡す
             request.setAttribute("results", results);
-
+            request.setAttribute("hitCount", hitCount);
+            
             // JSPに処理を渡して表示
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/EngDictionary/index.jsp");
             dispatcher.forward(request, response);
