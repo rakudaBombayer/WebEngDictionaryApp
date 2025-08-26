@@ -36,8 +36,8 @@
 
 
 <c:forEach var="row" items="${results}">
-  <h1 style="background-color: blue; color: white;">${row[0]}</h1>
-  <div>${fn:replace(row[1], " / ", "<br>")}</div>
+  <h1 style="background-color: blue; color: white; ">${row[0]}</h1>
+  <div style="margin-left: 10px;">${fn:replace(row[1], " / ", "<br>")}</div>
 </c:forEach>
 <c:if test="${hitCount == 0}">
   <p>検索結果は0件でした。</p>
